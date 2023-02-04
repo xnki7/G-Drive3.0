@@ -17,6 +17,15 @@ function App() {
 
     const loadProvider = async () => {
       if (provider) {
+        //metamask script for account change that reloads window , starts
+        window.ethereum.on("chainChanged", () => {
+          window.location.reload();
+        });
+
+        window.ethereum.on("accountsChanged", () => {
+          window.location.reload();
+        });
+        //metamask script for account change ends
         await provider.send("eth_requestAccounts", []); //as page loads it sends a request to connect the matamask
         const signer = provider.getSigner(); //to write data on blockchain
         const address = await signer.getAddress();
@@ -49,6 +58,11 @@ function App() {
       <p style={{ color: "white" }}>
         Account : {account ? account : "Not connected"}
       </p>
+      <FileUpload
+        account={account}
+        provider={provider}
+        contract={contract}
+      ></FileUpload>
     </div>
   );
 }
