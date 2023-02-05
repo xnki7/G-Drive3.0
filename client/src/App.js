@@ -58,11 +58,8 @@ function App() {
       <p style={{ color: "white" }}>
         Account : {account ? account : "Not connected"}
       </p>
-      <FileUpload
-        account={account}
-        provider={provider}
-        contract={contract}
-      ></FileUpload>
+      <FileUpload account={account} provider={provider} contract={contract} />
+      <Display account={account} contract={contract} />
     </div>
   );
 }
