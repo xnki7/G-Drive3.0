@@ -2,11 +2,10 @@ const hre = require("hardhat");
 
 async function main() {
   const Upload = await hre.ethers.getContractFactory("Upload");
-  const upload = await Upload.deploy();
+  const contract = await Upload.deploy(); //instance of contract
 
-  await upload.deployed();
-
-  console.log("Library deployed to:", upload.address);
+  await contract.deployed(); //now contract get deployed on hardhat blockchain
+  console.log("Address of contract", contract.address); //displaying address of contract
 }
 
 main().catch((error) => {
